@@ -5,30 +5,31 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzj8UXbHnVXezybVPwmyxqgDreZLX_BHz3Ly-YMN4fEEUTPQ_RfGVKUDTC5QSizlJYnZA/exec';
 
 export interface AttendanceData {
-  action: 'MASUK' | 'KELUAR';
+  action: 'clockIn' | 'clockOut'; // Sesuai dengan if (action === "clockIn" || ...)
   id: string;
-  lat: number;
-  lng: number;
-  photo: string; // Base64 string
+  type: 'MASUK' | 'KELUAR'; // Digunakan untuk logSheet.appendRow
+  location: {
+    lat: number;
+    lng: number;
+  };
+  photoBase64: string; // Sesuai dengan const { photoBase64 } = data;
 }
 
 export const submitAttendance = async (data: AttendanceData): Promise<void> => {
   try {
-    // Google Apps Script Web App memerlukan mode 'no-cors' jika tidak menguruskan CORS headers secara manual
-    // Disebabkan 'no-cors', kita tidak boleh membaca respon JSON yang dikembalikan (Opaque Response)
+    // Kita hantar sebagai text/plain supaya GAS tidak pening dengan CORS preflight
     await fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain;charset=utf-8',
       },
       body: JSON.stringify(data),
     });
     
-    // Kerana 'no-cors' tidak memulangkan status 200/400 yang boleh dibaca, 
-    // kita andaikan berjaya jika fetch tidak melontar error.
+    console.log('Data dihantar mengikut format code.gs anda.');
   } catch (error) {
-    console.error('Ralat semasa menghantar data:', error);
+    console.error('Ralat:', error);
     throw error;
   }
 };

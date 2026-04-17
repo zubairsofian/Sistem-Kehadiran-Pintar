@@ -88,11 +88,14 @@ const AttendanceSystem: React.FC = () => {
 
     try {
       const data: AttendanceData = {
-        action,
+        action: action === 'MASUK' ? 'clockIn' : 'clockOut',
         id: employeeId,
-        lat: location.lat,
-        lng: location.lng,
-        photo: photo
+        type: action,
+        location: {
+          lat: location.lat,
+          lng: location.lng
+        },
+        photoBase64: photo
       };
 
       await submitAttendance(data);
