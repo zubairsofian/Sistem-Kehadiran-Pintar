@@ -109,7 +109,7 @@ const AttendanceSystem: React.FC = () => {
   };
 
   return (
-    <div className="flex-grow flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4">
       {/* Search/Input Section - Integrated or subtle */}
       {!scanning && !isCameraActive && !photo && (
         <div className="flex gap-2">
@@ -130,7 +130,7 @@ const AttendanceSystem: React.FC = () => {
       )}
 
       {/* Main Container for Camera / Scanner / Photo */}
-      <section className="camera-container-immersive">
+      <section className="camera-container-immersive min-h-[300px]">
         {scanning ? (
           <div className="w-full h-full relative">
             <div id="qr-reader" className="w-full h-full"></div>

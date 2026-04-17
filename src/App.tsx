@@ -28,7 +28,7 @@ export default function App() {
         </motion.p>
       </header>
 
-      <main className="flex-grow flex flex-col">
+      <main className="flex-grow overflow-y-auto no-scrollbar py-2">
         <AttendanceSystem />
       </main>
 

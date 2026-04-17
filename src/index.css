@@ -68,6 +68,15 @@
   .btn-immersive-keluar {
     @apply h-[60px] rounded-2xl border-none font-bold text-[14px] uppercase flex items-center justify-center text-white transition-opacity active:opacity-80 bg-linear-to-br from-[#6366f1] to-[#4f46e5] shadow-[0_4px_15px_rgba(99,102,241,0.4)];
   }
+
+  /* Utility to hide scrollbars while keeping functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 
