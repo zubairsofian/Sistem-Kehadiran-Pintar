@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-immersive-bg-start: #064e3b;
+  --color-immersive-bg-end: #1e3a8a;
+  --color-immersive-primary: #10b981;
+  --color-immersive-secondary: #3b82f6;
+  --color-glass: rgba(255, 255, 255, 0.15);
+  --color-glass-border: rgba(255, 255, 255, 0.2);
+
+  @keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+  
+  --animate-scan: scan 2.5s infinite linear;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-white overflow-hidden m-0 p-0;
+    background: linear-gradient(135deg, var(--color-immersive-bg-start) 0%, var(--color-immersive-bg-end) 100%);
+    background-color: var(--color-immersive-bg-start);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+@layer components {
+  .app-frame {
+    @apply w-[375px] h-[667px] bg-white/15 backdrop-blur-[20px] border border-white/20 rounded-[40px] shadow-2xl relative flex flex-col p-6 overflow-hidden;
+  }
+
+  .status-bar {
+    @apply flex justify-between text-[12px] opacity-80 mb-5 font-medium;
+  }
+
+  .camera-container-immersive {
+    @apply flex-grow bg-black/30 border border-white/20 rounded-[20px] relative overflow-hidden mb-5 flex items-center justify-center;
+  }
+
+  .viewfinder-box {
+    @apply w-[200px] h-[200px] border-2 border-immersive-primary rounded-xl relative;
+  }
+
+  .scan-line {
+    @apply absolute top-0 left-0 w-full h-[2px] bg-immersive-primary shadow-[0_0_15px_#10b981] animate-scan;
+  }
+
+  .location-card-immersive {
+    @apply bg-white/10 border border-white/10 rounded-xl p-3 mb-5 text-[12px] flex items-center gap-2.5;
+  }
+
+  .location-dot {
+    @apply w-2 h-2 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444];
+  }
+
+  .btn-immersive-masuk {
+    @apply h-[60px] rounded-2xl border-none font-bold text-[14px] uppercase flex items-center justify-center text-white transition-opacity active:opacity-80 bg-linear-to-br from-[#10b981] to-[#059669] shadow-[0_4px_15px_rgba(16,185,129,0.4)];
+  }
+
+  .btn-immersive-keluar {
+    @apply h-[60px] rounded-2xl border-none font-bold text-[14px] uppercase flex items-center justify-center text-white transition-opacity active:opacity-80 bg-linear-to-br from-[#6366f1] to-[#4f46e5] shadow-[0_4px_15px_rgba(99,102,241,0.4)];
+  }
+}
+
+
+

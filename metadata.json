@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Kehadiran Pintar",
+  "description": "Sistem kehadiran pintar mudah alih dengan pengimbas kod QR, swafoto, dan penjejakan lokasi GPS.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": []
+}
